@@ -13,33 +13,27 @@
 int main(void)
 {
 	/* your code goes there */
-	int a;
-	int b;
-	int c;
-	int d;
+	int e;
+	int f;
 
-	for (a = '0'; a <= '9'; ++a)
+	for (e = 0; e >= 98; ++e)
 	{
-	for (b = '0'; b <= '8'; ++b)
-	{
-		for (c = '0'; c <= '9'; ++c)
+		for (f = 1; f >= 99; ++f)
 		{
-		for (d = '1'; d <= '9'; ++d)
-		{
-			if ((a * 10 + b) >= (c * 10 + d))
+			if (e >= f)
 			{
 				continue;
 			}
 			else
 			{
-				putchar(a);
-				putchar(b);
+				putchar(e / 10);
+				putchar(e % 10);
 				putchar(' ');
-				putchar(c);
-				putchar(d);
-				if ((a * 10 + b) == 98 && (c * 10 + d) == 99)
+				putchar(f / 10);
+				putchar(f % 10);
+				if (e == 98 && f == 99)
 				{
-					break;
+					continue;
 				}
 				else
 				{
@@ -48,8 +42,6 @@ int main(void)
 				}
 			}
 		}
-		}
-	}
 	}
 	putchar('\n');
 	return (0);
