@@ -17,7 +17,7 @@ int main(void)
 
 	for (e = 0; e <= 98; ++e)
 	{
-		for (f = 1; f <= 99; ++f)
+		for (f = e + 1; f <= 99; ++f)
 		{
 			putchar((e / 10) + '0');
 			putchar((e % 10) + '0');
