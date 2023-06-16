@@ -2,7 +2,6 @@
 #include <time.h>
 /* more headers goes there */
 #include <stdio.h>
-#include <string.h>
 
 /* betty style doc for function main goes there */
 /**
@@ -16,31 +15,19 @@ int main(void)
 	int e;
 	int f;
 
-	for (e = 0; e >= 98; ++e)
+	for (e = 0; e <= 98; ++e)
 	{
-		for (f = 1; f >= 99; ++f)
+		for (f = 1; f <= 99; ++f)
 		{
-			if (e >= f)
-			{
+			putchar((e / 10) + '0');
+			putchar((e % 10) + '0');
+			putchar(' ');
+			putchar((f / 10) + '0');
+			putchar((f % 10) + '0');
+			if (e == 98 && f == 99)
 				continue;
-			}
-			else
-			{
-				putchar(e / 10);
-				putchar(e % 10);
-				putchar(' ');
-				putchar(f / 10);
-				putchar(f % 10);
-				if (e == 98 && f == 99)
-				{
-					continue;
-				}
-				else
-				{
-					putchar(',');
-					putchar(' ');
-				}
-			}
+			putchar(',');
+			putchar(' ');
 		}
 	}
 	putchar('\n');
