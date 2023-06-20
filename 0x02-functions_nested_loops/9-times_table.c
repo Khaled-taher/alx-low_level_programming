@@ -13,30 +13,33 @@ void times_table(void)
 	int j;
 	int k;
 
-	j = 0;
-
-	while (j < 10)
+	for (i = 0; i < 10; i++)
 	{
-		i = 0;
-
-		while (i < 10)
+		for (j = 0; j < 10; j++)
 		{
-			k = i * j;
-			if (k >= 10)
-				_putchar((k / 10) + '0');
-			else
+			k = j * i;
+			if (j == 0)
+			{
+				_putchar(k + '0');
+			}
+
+			if (k < 10 && j != 0)
+			{
+				_putchar(',');
 				_putchar(' ');
-			_putchar((k % 10) + '0');
-			i = i + 1;
-			if (i == 10)
-				continue;
-			_putchar(',');
-			_putchar(' ');
+				_putchar(' ');
+				_putchar(k + '0');
+			}
+			else if (k >= 10)
+			{
+				_putchar(',');
+				_putchar(' ');
+				_putchar((k / 10) + '0');
+				_putchar((k % 10) + '0');
+			}
 		}
-		j = j + 1;
-		if (j == 10)
-			continue;
 		_putchar('\n');
 	}
+
 
 }
