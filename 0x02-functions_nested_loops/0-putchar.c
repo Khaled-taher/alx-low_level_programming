@@ -1,7 +1,5 @@
-#include <stdlib.h>
-#include <time.h>
 /* more headers goes there */
-#include <stdio.h>
+#include "main.h"
 
 /* betty style doc for function main goes there */
 /**
@@ -12,6 +10,14 @@
 int main(void)
 {
 	/* your code goes there */
-	printf("_putchat\n");
+	_putchar('_');
+	_putchar('p');
+	_putchar('u');
+	_putchar('t');
+	_putchar('c');
+	_putchar('h');
+	_putchar('a');
+	_putchar('r');
+	_putchar('\n');
 	return (0);
 }
