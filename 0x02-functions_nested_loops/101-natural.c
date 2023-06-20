@@ -8,6 +8,12 @@
  *
  * Return: return nothing
  */
+int main(void)
+{
+	print_natural();
+	return (0);
+}
+
 void print_natural(void)
 {
 	int i, sum;
