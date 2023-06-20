@@ -14,4 +14,4 @@ void print_times_table(int n);
 void print_natural(void);
 void fibonacci(int n);
 void fibonacci_sum(int n);
-
+void fibonacci_2(void);
