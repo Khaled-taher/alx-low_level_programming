@@ -17,7 +17,7 @@ int main(void)
 	for (i = 1; i <= nx; i++)
 	{
 		if (n % i == 0)
-			prime = i;
+			prime = n / i;
 	}
 	printf("%ld\n", prime);
 	return (0);
