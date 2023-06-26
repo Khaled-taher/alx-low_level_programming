@@ -7,7 +7,8 @@
  */
 int _atoi(char *s)
 {
-	int  i, min, num, is;
+	int  i, min, is;
+	unsigned int num;
 
 	i = 0;
 	num = 0;
@@ -18,7 +19,7 @@ int _atoi(char *s)
 	{
 		while (s[i] >= '0' && s[i] <= '9')
 		{
-			num = (num * 10) + (s[i] - 48);
+			num = (num * 10) + (s[i] - '0');
 			is = 1;
 			i = i + 1;
 		}
@@ -30,6 +31,6 @@ int _atoi(char *s)
 
 	}
 	if (min % 2 == 1)
-		num = - num;
+		num = -num;
 	return (num);
 }
