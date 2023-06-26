@@ -36,7 +36,7 @@ int main(void)
 		{
 			if (pw[i] >= (33 + diff1))
 			{
-				pw[i] = - pw[i] - diff1;
+				pw[i] = pw[i] - diff1;
 				break;
 			}
 		}
@@ -45,7 +45,7 @@ int main(void)
                 {
                         if (pw[i] >= (33 + diff2))
                         {
-                                pw[i] = - pw[i] - diff2;
+                                pw[i] = pw[i] - diff2;
                                 break;
                         }
                 }
