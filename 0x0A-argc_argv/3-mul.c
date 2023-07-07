@@ -9,17 +9,13 @@ int str_to_int(char *s)
 {
 	int j, l, weight, num;
 
-	weight = 1;
 	num = 0;
 	l = strlen(s);
 
 	for (j = l - 1; j >= 0; j--)
 	{
-		if (s[j] >= '0' && s[j] <= '9')
-		{
-			num = weight * (s[j] - '0') + num;
-			weight = weight * 10;
-		}
+		num = weight * (s[j] - '0') + num;
+		weight = weight * 10;
 	}
 	return (num);
 }
