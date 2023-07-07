@@ -1,45 +1,16 @@
-#include "main.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 /**
- * str_to_int - check the code
- * @s: number of arguments
- * Return: Always 0.
- */
-int str_to_int(char *s)
-{
-	int j, l, weight, num;
-
-	num = 0;
-	l = strlen(s);
-
-	for (j = l - 1; j >= 0; j--)
-	{
-		num = weight * (s[j] - '0') + num;
-		weight = weight * 10;
-	}
-	return (num);
-}
-
-/**
- * main - check the code
+ * main - prints the result of the multiplication, followed by a new line
  * @argc: number of arguments
- * @argv:pointer to array of pointers
- * Return: Always 0.
+ * @argv: array of arguments
+ * Return: 0
  */
 int main(int argc, char *argv[])
 {
-	int a, b, result;
-
 	if (argc != 3)
-	{
-		printf("Error\n");
-		return (1);
-	}
-
-	a = str_to_int(argv[1]);
-	b = str_to_int(argv[2]);
-	result = a * b;
-
-	printf("%d\n", result);
+		return (printf("Error\n"), 1);
+	printf("%d\n", atoi(argv[1]) * atoi(argv[2]));
 	return (0);
 }
