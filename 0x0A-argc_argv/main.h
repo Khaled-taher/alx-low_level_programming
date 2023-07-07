@@ -5,5 +5,6 @@
 #include <string.h>
 
 int _putchar(char c);
+int str_to_int(char *s);
 
 #endif
