@@ -1,44 +1,50 @@
 #include "main.h"
+#include <stdlib.h>
 
 /**
- * _realloc - concatenates all the arguments of your program
- * @ptr: number of arguments
- * @old_size: array of arguments
- * @new_size: new size
- * Return: pointer to a new string, or NULL if it fails
+ * _realloc - reallocates a memory block using malloc and free
+ * @ptr: pointer to the memory previously allocated with a call to malloc
+ * @old_size: size, in bytes, of the allocated space for ptr
+ * @new_size: new size, in bytes of the new memory block
+ *
+ * Return: pointer to the new memory block
  */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
+	char *result;
 	unsigned int i;
-	char *str;
 
+	/* if new_size == old_size, do nothing and return ptr */
+	if (new_size == old_size)
+		return (ptr);
+
+	/* if new_size == 0 and ptr is not NULL, call free(ptr) */
 	if (new_size == 0 && ptr != NULL)
 	{
 		free(ptr);
 		return (NULL);
 	}
+
+	/* if ptr is NULL, call malloc(new_size) */
 	if (ptr == NULL)
 	{
-		ptr = malloc(sizeof(char) * (new_size + 1));
-
-		if (ptr == NULL)
+		result = malloc(new_size);
+		if (result == NULL)
 			return (NULL);
-
-		return (ptr);
+		return (result);
 	}
-	if (new_size == old_size)
-		return (ptr);
-	str = malloc(sizeof(char) * old_size);
-	if (str == NULL)
-		return (NULL);
-	for (i = 0; i < old_size; i++)
-		str[i] = ((char *)ptr)[i];
-	ptr = malloc(sizeof(char) * new_size);
-	if (ptr == NULL)
-		return (NULL);
-	for (i = 0; i < old_size; i++)
-		((char *)ptr)[i] = str[i];
-	free(str);
-	return (ptr);
 
+	/* allocate memory for new_size */
+	result = malloc(new_size);
+	if (result == NULL)
+		return (NULL);
+
+	/* copy contents of ptr to result */
+	for (i = 0; i < old_size && i < new_size; i++)
+		result[i] = ((char *)ptr)[i];
+
+	/* free ptr */
+	free(ptr);
+
+	return (result);
 }
