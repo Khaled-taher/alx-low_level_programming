@@ -1,26 +1,30 @@
 #include "main.h"
+#include <stdlib.h>
 
 /**
- * _calloc - concatinate to strings
- * @nmemb: destination to concatinate after
- * @size: scource taht will be concatinated
- * Return: pointer to destination
+ * _calloc - allocates memory for an array, using malloc
+ * @nmemb: number of elements in array
+ * @size: size of each element
+ *
+ * Return: pointer to allocated memory
  */
 void *_calloc(unsigned int nmemb, unsigned int size)
 {
+	char *result;
 	unsigned int i;
-	char *array;
 
+	/* if nmemb or size is 0, return NULL */
 	if (nmemb == 0 || size == 0)
 		return (NULL);
 
-	array = malloc(nmemb * size);
-
-	if (array == NULL)
+	/* allocate memory for array */
+	result = malloc(nmemb * size);
+	if (result == NULL)
 		return (NULL);
 
+	/* initialize array to 0 */
 	for (i = 0; i < nmemb * size; i++)
-		array[i] = 0;
+		result[i] = 0;
 
-	return (array);
+	return (result);
 }
