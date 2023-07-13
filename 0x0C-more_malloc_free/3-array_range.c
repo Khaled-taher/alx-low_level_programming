@@ -1,28 +1,30 @@
 #include "main.h"
+#include <stdlib.h>
 
 /**
- * array_range - concatinate to strings
- * @min: destination to concatinate after
- * @max: scource taht will be concatinated
- * Return: pointer to destination
+ * array_range - creates an array of integers
+ * @min: minimum value
+ * @max: maximum value
+ *
+ * Return: pointer to array
  */
 int *array_range(int min, int max)
 {
-	int num, i;
-	int *array;
+	int *result;
+	int i;
 
+	/* if min is greater than max, return NULL */
 	if (min > max)
 		return (NULL);
 
-	num = max - min + 1;
-
-	array = malloc(sizeof(int) * num);
-
-	if (array == NULL)
+	/* allocate memory for array */
+	result = malloc(sizeof(int) * (max - min + 1));
+	if (result == NULL)
 		return (NULL);
 
-	for (i = min; i < num; i++)
-		array[i - min] = i;
+	/* fill array with values from min to max */
+	for (i = 0; i <= max - min; i++)
+		result[i] = min + i;
 
-	return (array);
+	return (result);
 }
