@@ -1,13 +1,14 @@
 #include "function_pointers.h"
+#include <stdlib.h>
 
 /**
- * print_name - concatinate to strings
- * @name: destination to concatinate after
- * @f: scource taht will be concatinated
- * Return: pointer to destination
+ * print_name - prints a name
+ * @name: name to print
+ * @f: pointer to the printing function
  */
 void print_name(char *name, void (*f)(char *))
 {
-	if (name && f)
-		f(name);
+	if (!name || !f)
+		return;
+	f(name);
 }
