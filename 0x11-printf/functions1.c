@@ -2,7 +2,7 @@
 
 /**
  * print_char - print characters
- * @c: char to be printed
+ * @args: number to be printed
  * Return: return 1
  */
 int print_int(va_list args)
@@ -27,5 +27,34 @@ int print_int(va_list args)
 	}
 
 	return (dig);
+}
+
+/**
+ * print_bin - print number in binary form
+ * @args: number to be printed in binary form
+ * Return: number of printed bits
+ */
+int print_bin(va_list args)
+{
+	int n = va_arg(args, int);
+	int i, temp = n, exp = 1, bt = 0;
+
+	while (temp != 0)
+	{
+		temp = temp / 2;
+		exp = exp * 2;
+		bt++;
+	}
+
+	temp = n;
+
+	for (i = 0; i < bt; i++)
+	{
+		exp = exp / 2;
+		_putchar((temp / exp) + '0');
+		temp = temp % exp;
+	}
+
+	return (bt);
 }
 

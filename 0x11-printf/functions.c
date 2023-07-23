@@ -2,7 +2,7 @@
 
 /**
  * print_char - print characters
- * @c: char to be printed
+ * @args: char to be printed
  * Return: return 1
  */
 int print_char(va_list args)
@@ -15,8 +15,8 @@ int print_char(va_list args)
 }
 
 /**
- * print_string - print strings
- * @str: pointer to string to be printed
+ * print_str - print strings
+ * @args: pointer to string to be printed
  * Return: number of printed charcter
  */
 int print_str(va_list args)
@@ -36,12 +36,12 @@ int print_str(va_list args)
 }
 
 /**
- * print_prec - print percentage mark
- * @c: char to be printed
+ * print_perc - print percentage mark
+ *
  * Return: return 1
  */
 int print_perc(void)
 {
 	_putchar('%');
-	return(1);
+	return (1);
 }
