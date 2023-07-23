@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * print_char - print characters
+ * print_int - print characters
  * @args: number to be printed
  * Return: return 1
  */
@@ -45,8 +45,8 @@ int print_int(va_list args)
  */
 int print_bin(va_list args)
 {
-	int n = va_arg(args, int);
-	int i, temp = n, exp = 1, bt = 0;
+	unsigned long int n = va_arg(args, unsigned int);
+	unsigned long int temp = n, i, exp = 1, bt = 0;
 
 	while (temp != 0)
 	{
@@ -74,24 +74,24 @@ int print_bin(va_list args)
  */
 int print_unsig(va_list args)
 {
-	int n = va_arg(args, int);
-	int i, temp = n, exp = 1, bt = 0;
+	unsigned long int n = va_arg(args, unsigned int);
+	unsigned long temp = n, exp = 1, dig = 0, i;
 
 	while (temp != 0)
 	{
-		temp = temp / 2;
-		exp = exp * 2;
-		bt++;
+		temp = temp / 10;
+		exp = exp * 10;
+		dig++;
 	}
 
 	temp = n;
 
-	for (i = 0; i < bt; i++)
+	for (i = 0; i < dig; i++)
 	{
-		exp = exp / 2;
+		exp = exp / 10;
 		_putchar((temp / exp) + '0');
 		temp = temp % exp;
 	}
 
-	return (bt);
+	return (dig);
 }

@@ -6,6 +6,11 @@
 #include <stdarg.h>
 #include <string.h>
 
+/**
+ * struct op - it is a struct
+ * @s: selecting char
+ * @f: function related to selecting char
+ */
 typedef struct op
 {
 	char *s;
@@ -20,5 +25,9 @@ int print_str(va_list args);
 int print_perc(void);
 int print_int(va_list args);
 int print_bin(va_list args);
+int print_unsig(va_list args);
+int print_oct(va_list args);
+int print_hex(va_list args);
+int print_HEX(va_list args);
 
 #endif /* MAIN_H */
