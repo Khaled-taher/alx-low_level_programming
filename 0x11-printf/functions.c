@@ -11,6 +11,7 @@ int print_char(va_list args)
 
 	c = va_arg(args, int);
 	_putchar(c);
+	va_end(args);
 	return (1);
 }
 
@@ -32,6 +33,7 @@ int print_str(va_list args)
 	for (i = 0; i < len; i++)
 		_putchar(str[i]);
 
+	va_end(args);
 	return (len);
 }
 

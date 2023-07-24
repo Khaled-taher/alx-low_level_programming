@@ -7,7 +7,7 @@
  */
 int _printf(const char *format, ...)
 {
-	int i = 0, len;
+	int i = 0, len = 0;
 	va_list args;
 	int (*op_func)(va_list);
 

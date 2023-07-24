@@ -29,5 +29,12 @@ int print_unsig(va_list args);
 int print_oct(va_list args);
 int print_hex(va_list args);
 int print_HEX(va_list args);
+int print_STR(va_list args);
+void p_HEX(unsigned long int n);
+int p_hex(unsigned long int n);
+int print_STR(va_list args);
+int print_ptr(va_list args);
+int print_rev(va_list args);
+int print_rot13(va_list args);
 
 #endif /* MAIN_H */

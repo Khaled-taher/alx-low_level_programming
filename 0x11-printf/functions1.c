@@ -35,6 +35,7 @@ int print_int(va_list args)
 		temp = temp % exp;
 	}
 
+	va_end(args);
 	return (dig + sig);
 }
 
@@ -64,6 +65,7 @@ int print_bin(va_list args)
 		temp = temp % exp;
 	}
 
+	va_end(args);
 	return (bt);
 }
 
@@ -93,5 +95,6 @@ int print_unsig(va_list args)
 		temp = temp % exp;
 	}
 
+	va_end(args);
 	return (dig);
 }

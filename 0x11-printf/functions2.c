@@ -7,7 +7,7 @@
  */
 int print_oct(va_list args)
 {
-	unsigned long int n = va_arg(args, int);
+	unsigned long int n = va_arg(args, unsigned int);
 	unsigned long int i, temp = n, exp = 1, dig = 0;
 
 	while (temp != 0)
@@ -26,6 +26,7 @@ int print_oct(va_list args)
 		temp = temp % exp;
 	}
 
+	va_end(args);
 	return (dig);
 }
 
@@ -62,6 +63,7 @@ int print_hex(va_list args)
 		temp = temp % exp;
 	}
 
+	va_end(args);
 	return (bt);
 }
 
@@ -98,5 +100,6 @@ int print_HEX(va_list args)
 		temp = temp % exp;
 	}
 
+	va_end(args);
 	return (bt);
 }

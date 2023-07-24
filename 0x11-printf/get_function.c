@@ -18,6 +18,10 @@ int (*get_function(char c))(va_list)
 		{"o", print_oct},
 		{"x", print_hex},
 		{"X", print_HEX},
+		{"S", print_STR},
+		{"p", print_ptr},
+		{"r", print_rev},
+		{"R", print_rot13},
 		{NULL, NULL}
 	};
 
