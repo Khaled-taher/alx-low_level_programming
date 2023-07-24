@@ -10,7 +10,7 @@ int (*get_function(char c))(va_list)
 	op_t op[] = {
 		{"c",  print_char},
 		{"s", print_str},
-		{"%", print_perc},
+		{"%", print_mark},
 		{"i", print_int},
 		{"d", print_int},
 		{"b", print_bin},

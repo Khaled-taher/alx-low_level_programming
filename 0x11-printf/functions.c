@@ -42,7 +42,7 @@ int print_str(va_list args)
  *
  * Return: return 1
  */
-int print_perc(void)
+int print_mark(void)
 {
 	_putchar('%');
 	return (1);
