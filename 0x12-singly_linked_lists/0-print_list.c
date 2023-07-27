@@ -7,33 +7,16 @@
  */
 size_t print_list(const list_t *h)
 {
+	size_t i = 0;
 
-	if (h == NULL)
+	while (h)
 	{
-		printf("Error");
-		return (0);
+		if (h->str)
+			printf("[%u] %s\n", h->len, h->str);
+		else
+			printf("[0] (nil)\n");
+		h = h->next;
+		i++;
 	}
-	return (print_ele(h, 0));
-}
-
-/**
- * print_ele - function to print element and count them
- * @h: pointer to list
- * @n: number of ele
- * Return: number of elemet
- */
-int print_ele(const list_t *h, int n)
-{
-	n = n + 1;
-
-	if (h->str == NULL)
-		printf("[0] (nil)\n");
-	else
-		printf("[%d] %s\n", h->len, h->str);
-
-	if (h->next == NULL)
-		return (n);
-	else
-		return (print_ele(h->next, n));
-
+	return (i);
 }
