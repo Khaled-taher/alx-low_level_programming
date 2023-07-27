@@ -7,25 +7,14 @@
  */
 size_t list_len(const list_t *h)
 {
-	if (h == NULL)
-		return (0);
-	else
-		return (_list_len(h, 0));
-}
+	size_t n;
 
-/**
- * _list_len - help to calculate the counts
- * @h: pointer to list
- * @n: number of ele
- * Return: number of elemet
- */
-int _list_len(const list_t *h, int n)
-{
-	n = n + 1;
+	while (h)
+	{
+		h = h->next;
+		n++;
+	}
 
-	if (h->next == NULL)
-		return (n);
-	else
-		return (_list_len(h->next, n));
+	return (n);
 }
 
