@@ -1,27 +1,23 @@
 #include "lists.h"
+#include <string.h>
 
 /**
- * add_node_end - concatinate to strings
- * @head: pointer to first element
- * @str: string to be writen in the element
- * Return: address to new element
+ * add_node_end - adds a new node at the end of a list_t list
+ * @head: pointer to the head of the list
+ * @str: string to be duplicated
+ *
+ * Return: the address of the new element, or NULL if it failed
  */
 list_t *add_node_end(list_t **head, const char *str)
 {
-	int i;
 	list_t *new, *last;
 
 	new = malloc(sizeof(list_t));
 	if (new == NULL)
 		return (NULL);
-
-	for (i = 0; str[i] != '\0';  i++)
-		i++;
-
 	new->str = strdup(str);
-	new->len = i;
+	new->len = strlen(str);
 	new->next = NULL;
-
 	if (*head == NULL)
 		*head = new;
 	else
