@@ -1,22 +1,26 @@
 #include "lists.h"
 
 /**
- * reverse_listint - concatinate to strings
- * @head: pointer to first element
- * Return: return nothing
+ * reverse_listint - reverses a listint_t linked list
+ * @head: double pointer to the head of the list
+ * Return: pointer to the first node of the reversed list
  */
 listint_t *reverse_listint(listint_t **head)
 {
-	listint_t *prev = NULL, *next = NULL, *curr = *head;
+	listint_t *prev, *next;
 
-	while (curr)
+	if (head == NULL || *head == NULL)
+		return (NULL);
+
+	prev = NULL;
+	while (*head)
 	{
-		next = curr->next;
-		curr->next = prev;
-		prev = curr;
-		curr = next;
+		next = (*head)->next;
+		(*head)->next = prev;
+		prev = *head;
+		*head = next;
 	}
+	*head = prev;
 
-	(*head) = prev;
 	return (*head);
-}	
+}

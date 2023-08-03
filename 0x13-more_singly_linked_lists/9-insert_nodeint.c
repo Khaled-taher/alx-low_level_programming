@@ -1,51 +1,44 @@
 #include "lists.h"
 
 /**
- * insert_nodeint_at_index - concatinate to strings
- * @head: pointer to first element
- * @idx: index of the node to be added in
- * @n: data t be entered
- * Return: return nothing
+ * insert_nodeint_at_index - inserts a new node at a given position
+ * @head: pointer to the head of the list
+ * @idx: index of the list where the new node should be added
+ * @n: data to be added to the new node
+ * Return: address of the new node, or NULL if it failed
  */
 listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 {
-	unsigned i;
-	listint_t *new, *temp = *head;
-
-	if (temp == NULL)
-		return (NULL);
+	listint_t *new, *tmp;
+	unsigned int i;
 
 	new = malloc(sizeof(listint_t));
-	
-	if (new == NULL)
+	if (new == NULL || head == NULL)
 		return (NULL);
 
 	new->n = n;
 
+	/* if idx == 0, insert at the beginning */
 	if (idx == 0)
 	{
-		new->next = *temp;
-		*temp = new;
+		new->next = *head;
+		*head = new;
 		return (new);
 	}
 
-	for (i = 0; i <= idx; i++)
+	tmp = *head;
+	for (i = 0; i < idx - 1; i++)
 	{
-		if (i == idx - 1)
-		{
-			new->next = temp->next;
-			temp->next = new;
-			return (new);
-		}
-
-		else if (temp->next == NULL)
+		if (tmp == NULL)
 		{
 			free(new);
 			return (NULL);
 		}
-
-		temp = temp->next;
+		tmp = tmp->next;
 	}
 
-	return (NULL);
+	new->next = tmp->next;
+	tmp->next = new;
+
+	return (new);
 }
