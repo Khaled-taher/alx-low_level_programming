@@ -1,15 +1,15 @@
 #include "main.h"
 
 /**
- * get_bit - returns the value of a bit at a given index
- * @n: the number to get the bit from
- * @index: the index of the bit to get
- *
- * Return: the value of the bit at index index or -1 if an error occured
+ * set_bit - sets the value of a bit to 1 at a given index.
+ * @n: pointer to the number to set the bit
+ * @index: index of the bit to set
+ * Return: 1 if it worked, or -1 if an error occurred
  */
-int get_bit(unsigned long int n, unsigned int index)
+int set_bit(unsigned long int *n, unsigned int index)
 {
-	if (index > sizeof(n) * 8)
+	if (index > sizeof(unsigned long int) * 8)
 		return (-1);
-	return ((n >> index) & 1);
+	*n |= 1 << index;
+	return (1);
 }
