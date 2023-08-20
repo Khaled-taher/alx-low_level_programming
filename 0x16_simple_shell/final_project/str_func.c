@@ -26,22 +26,17 @@ char *_strdup(char *str)
 
 	if (str == NULL)
 		return (NULL);
-
 	while (str[size])
 		size++;
-
 	str2 = malloc(sizeof(char) * (size + 1));
-
 	if (str2 == NULL)
 		return (NULL);
-
 	for (i = 0; i < size; i++)
 		str2[i] = str[i];
-
 	str2[i] = '\0';
-
 	return (str2);
 }
+
 #include "main.h"
 
 /**
@@ -56,12 +51,10 @@ int _strcmp(char *s1, char *s2)
 
 	j = strlen(s1);
 	k = strlen(s2);
-
 	if (j >= k)
 		l = j;
 	else
 		l = k;
-
 	for (i = 0; i < l; i++)
 	{
 		if (s1[i] == s2[i])
@@ -72,37 +65,31 @@ int _strcmp(char *s1, char *s2)
 			break;
 		}
 	}
-
 	return (result);
 }
 
 /**
  * _strndup - duplicate n char of string into another
  * @str: destination to concatinate after
+ * @n: number of char to be duplicated
  * Return: pointer to destination
  */
 char *_strndup(char *str, int n)
 {
 	int size = 0;
-        char *str2;
+	char *str2;
 
-        if (str == NULL)
-                return (NULL);
-
-        while (str[size])
-                size++;
-
+	if (str == NULL)
+		return (NULL);
+	while (str[size])
+		size++;
 	if (size < n)
 		n = size;
-
-        str2 = malloc(sizeof(char) * (n + 1));
-        if (str2 == NULL)
-                return (NULL);
-
-        for (i = 0; i < n; i++)
-                str2[i] = str[i];
-
-        str2[i] = '\0';
-
-        return (str2);
+	str2 = malloc(sizeof(char) * (n + 1));
+	if (str2 == NULL)
+		return (NULL);
+	for (i = 0; i < n; i++)
+		str2[i] = str[i];
+	str2[i] = '\0';
+	return (str2);
 }

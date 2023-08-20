@@ -1,14 +1,14 @@
 #include "main.h"
 
 /**
- * _setenv - to set value of new variable or modify it 
+ * _unsetenv - to set value of new variable or modify it
  * @environ: pointer to environment variables
  * @name: name of variable to set
  * Return: return 0 if sucessed and -1 in fail
  */
 int _unsetenv(char **environ, const char *name)
 {
-	char *str; 
+	char *str;
 	int len, i = 0, j;
 	char **new_environ = NULL;
 
@@ -20,12 +20,11 @@ int _unsetenv(char **environ, const char *name)
 			break;
 		i++;
 	}
-
 	if (environ[i] == NULL)
 	{
 		return (0);
 	}
-	else 
+	else
 	{
 		j = 0;
 		while (environ[j])
