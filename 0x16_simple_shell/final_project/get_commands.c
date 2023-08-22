@@ -6,30 +6,28 @@
  * @command_num: number of command in the line
  * Return: return pointer to commands or NULL in error
  */
-char **get_command(char *lineptr, int *command_num)
+char **get_command(char *lineptr)
 {
-	char **command, *token;
-	int i = 0, *error;
+	char **command = NULL, *token;
+	int i = 0, error = 0, command_num = 1;
 
-	(*command_num) = 1;
-	(*error) = 0;
-	get_command_helper(lineptr, command_num, error);
+	get_command_helper(lineptr, &command_num, &error);
 
-	if ((*error) == 1)
+	if (error == 1)
 	{
-		helper_error(command, command_num)
+		helper_error(command);
 		return (command);
 	}
 
-	command = malloc(sizeof(char *) * ((*command_num) + 1));
+	command = malloc(sizeof(char *) * (command_num + 1));
 	if (command == NULL)
 	{
 		perror("Error:");
-		helper_error(command, command_num);
+		helper_error(command);
 		return (command);
 	}
 	token = strtok(lineptr, "#;\n");
-	while (token != NULL && i < (*command_num))
+	while (token != NULL && i < command_num)
 	{
 		command[i] = strdup(token);
 		token = strtok(NULL, " \n");
@@ -52,8 +50,11 @@ void get_command_helper(char *lineptr, int *command_num, int *error)
 
 	while (lineptr[i] != '\0')
 	{
-		if (i == 0 && lineptr[i] == '#')
+		if (lineptr[0] == '#')
+		{
 			(*error) = 1;
+			break;
+		}
 		if (lineptr[i] == ' ')
 			if (get_command_helper2(lineptr, error, i) == -1)
 				break;
@@ -61,7 +62,7 @@ void get_command_helper(char *lineptr, int *command_num, int *error)
 		{
 			if (lineptr[i + 1] == ';')
 			{
-				printf("bash: syntax error near unexpected token `;`");
+				printf("bash: syntax error near unexpected token `;`\n");
 				(*error) = 1;
 				break;
 			}
@@ -71,12 +72,14 @@ void get_command_helper(char *lineptr, int *command_num, int *error)
 				{
 					if (lineptr[i + 2] == ';')
 					{
-						printf("bash: syntax error near unexpected token `;`");
+						printf("bash: syntax error near unexpected token `;`\n");
 						(*error) = 1;
-						exit;
+						break;
 					}
 					i++;
 				}
+				if (lineptr[i + 1] == '#')
+					break;
 				(*command_num)++;
 			}
 		}
@@ -93,9 +96,9 @@ void get_command_helper(char *lineptr, int *command_num, int *error)
  */
 int get_command_helper2(char *lineptr, int *error, int i)
 {
-	if (lineptr[i + 1] != '#')
+	if (lineptr[i + 1] == '#')
 		return (-1);
-	if ((lineptr[i + 1] == '&' && lineptr[i + 2] != '&') ||
+	/*if ((lineptr[i + 1] == '&' && lineptr[i + 2] != '&') ||
 			(lineptr[i + 1] == '&' && lineptr[i + 3] == '&'))
 	{
 		printf("bash: syntax error near unexpected token `&`");
@@ -108,7 +111,7 @@ int get_command_helper2(char *lineptr, int *error, int i)
 		printf("bash: syntax error near unexpected token `|`");
 		(*error) = 1;
 		return (-1);
-	}
+	}*/
 	return (0);
 }
 /**
@@ -117,10 +120,9 @@ int get_command_helper2(char *lineptr, int *error, int i)
  * @command_num: number of commands in the line
  * Return: nothing
  */
-void helper_error(char **command, int *command_num)
+void helper_error(char **command)
 {
 	command = malloc(sizeof(char *) * 2);
 	command[0] = strdup(" ");
 	command[1] = NULL;
-	(*command_num) = 0;
 }

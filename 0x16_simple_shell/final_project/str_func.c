@@ -5,7 +5,7 @@
  * @s: scource taht will be concatinated
  * Return: pointer to destination
  */
-int _strlen(char *s)
+int _strlen(const char *s)
 {
 	if (*s)
 		return (1 + _strlen(s + 1));
@@ -45,7 +45,7 @@ char *_strdup(char *str)
  * @s2: pointer to string 2
  * Return: 0 if same and number of different char
  */
-int _strcmp(char *s1, char *s2)
+int _strcmp(const char *s1, char *s2)
 {
 	int i, j, k, l, result;
 
@@ -76,7 +76,7 @@ int _strcmp(char *s1, char *s2)
  */
 char *_strndup(char *str, int n)
 {
-	int size = 0;
+	int size = 0, i;
 	char *str2;
 
 	if (str == NULL)
@@ -87,7 +87,9 @@ char *_strndup(char *str, int n)
 		n = size;
 	str2 = malloc(sizeof(char) * (n + 1));
 	if (str2 == NULL)
+	{
 		return (NULL);
+	}
 	for (i = 0; i < n; i++)
 		str2[i] = str[i];
 	str2[i] = '\0';

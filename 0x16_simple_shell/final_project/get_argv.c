@@ -8,16 +8,14 @@
 char **get_argv(char *lineptr)
 {
 	char **argv, *token;
-	int i = 0, *arg_num = NULL, *char_num = NULL;
+	int i = 0, arg_num = 1, char_num = 0;
 
-	(*arg_num) = 1;
-	(*char_num) = 0;
-
-	if (get_argv_helper(lineptr, arg_num, char_num) == -1)
+	if (get_argv_helper(lineptr, &arg_num, &char_num) == -1)
 		return (NULL);
+
 	if (char_num == 0)
-		return (NULL);
-
+		return(NULL);
+	i = 0;
 	argv = malloc(sizeof(char *) * (arg_num + 1));
 	if (argv == NULL)
 	{
@@ -52,7 +50,7 @@ int get_argv_helper(char *lineptr, int *arg_num, int *char_num)
 	while (lineptr[i] != '\0')
 	{
 		if (i == 0 && lineptr[i] == '#')
-			return (-1);
+			break;
 
 		if (lineptr[i] != ' ')
 			(*char_num)++;
@@ -64,7 +62,7 @@ int get_argv_helper(char *lineptr, int *arg_num, int *char_num)
 			if (lineptr[i + 1] == '#')
 				break;
 			if (lineptr[i + 1] != '\n')
-				(*arg_num++);
+				(*arg_num)++;
 		}
 		i++;
 	}
