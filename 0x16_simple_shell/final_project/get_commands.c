@@ -26,11 +26,11 @@ char **get_command(char *lineptr)
 		helper_error(command);
 		return (command);
 	}
-	token = strtok(lineptr, "#;\n");
+	token = _strtok(lineptr, "#;\n");
 	while (token != NULL && i < command_num)
 	{
 		command[i] = strdup(token);
-		token = strtok(NULL, " \n");
+		token = _strtok(NULL, " \n");
 		i++;
 	}
 	command[i] = NULL;
