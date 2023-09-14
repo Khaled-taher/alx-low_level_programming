@@ -1,28 +1,28 @@
 #include "main.h"
 
 /**
- * get_flag - get the right function to be run
- * @c: char to take decision depend on it
+ * get_flag - get the flag function to be run
+ * @str: char to take decision depend on it
  * Return: return pointer to function
  */
-int (*get_flag(char *str))(va_list)
+int get_flag(const char *str)
 {
-	op_t op1[] = {
-		{"0#",  print_char},
-		{"-#", print_str},
-		{"0+", print_perc},
-		{"0 ", print_int},
-		{"+-", print_int},
-		{"- ", print_bin},
-		{NULL, NULL}
+	flg_t op1[] = {
+		{"0#", 21},
+		{"-#", 22},
+		{"0+", 1},
+		{"0 ", 11},
+		{"+-", 2},
+		{"- ", 12},
+		{NULL, 0}
 	};
-op_t op2[] = {
-		{"0",  print_char},
-		{"+", print_str},
-		{" ", print_perc},
-		{"-", print_int},
-		{"#", print_int},
-		{NULL, NULL}
+	flg_t op2[] = {
+		{"0", 30},
+		{"+", 0},
+		{" ", 10},
+		{"-", 40},
+		{"#", 20},
+		{NULL, 0}
 	};
 
 	int i = 0;
@@ -31,16 +31,15 @@ op_t op2[] = {
 	{
 		if ((op1[i].s[0] == str[0] && op1[i].s[1] == str[1]) ||
 		(op1[i].s[1] == str[0] && op1[i].s[0] == str[1]))
-			return (op1[i].f);
-			
+			return (op1[i].n);
 		i++;
 	}
 	while (op2[i].s != NULL)
 	{
 		if (op2[i].s[0] == str[0])
-			return (op[i].f);
+			return (op2[i].n);
 
 		i++;
 	}
-	return (NULL);
+	return (0);
 }

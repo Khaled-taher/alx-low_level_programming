@@ -2,10 +2,10 @@
 
 /**
  * get_function - get the right function to be run
- * @c: char to take decision depend on it
+ * @str: char to take decision depend on it
  * Return: return pointer to function
  */
-int (*get_function(char c))(va_list)
+int (*get_function(const char *str, int *ptr))(va_list, int, int, int, int)
 {
 	op_t op[] = {
 		{"c",  print_char},
@@ -25,14 +25,20 @@ int (*get_function(char c))(va_list)
 		{NULL, NULL}
 	};
 
-	int i = 0;
-
-	while (op[i].s != NULL)
+	int i = 0, j = 0;
+	while (str[j] != '\0')
 	{
-		if (op[i].s[0] == c)
-			return (op[i].f);
-
-		i++;
+		i = 0;
+		while (op[i].s != NULL)
+		{
+			if (op[i].s[0] == str[j])
+			{
+				*ptr = j;
+				return (op[i].f);
+			}
+			i++;
+		}
+		j++;
 	}
 	return (NULL);
 }

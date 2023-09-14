@@ -48,6 +48,7 @@ int main(__attribute__((unused))int arc, __attribute__((unused)) char **arv,
 			}
 			i++;
 			_free_arr(argv);
+			free(command[i]);
 		}
 		_free_arr(command);
 	}

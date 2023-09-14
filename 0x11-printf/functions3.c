@@ -5,7 +5,8 @@
  * @args: pointer to string to be printed
  * Return: number of printed charcter
  */
-int print_STR(va_list args)
+int print_STR(va_list args, __attribute__((unused)) int flg, __attribute__((unused)) int width,
+		__attribute__((unused)) int precision, __attribute__((unused)) int length)
 {
 	int i, len =  0, extra = 0;
 	char *str;
@@ -39,15 +40,31 @@ int print_STR(va_list args)
  * @args: pointer to be printed
  * Return: return number of printed charcters
  */
-int print_ptr(va_list args)
+int print_ptr(va_list args, int flg, int width, __attribute__((unused)) int precision, __attribute__((unused)) int length)
 {
 	int len;
+	unsigned long int exp = 1;
+	unsigned long int *ptr = &exp;
 	unsigned long int p = (unsigned long int)va_arg(args, void *);
 
 	_putchar('0');
 	_putchar('x');
-	len = p_hex(p);
+	len = arr_len(p, ptr, 16) + 2;
 
+	if ((width > len) && (flg == 40))
+	{
+		len = p_hex(p);
+		print_ledding_char(width - len, ' ');
+		return (width);
+	}
+	else if (width > len)
+	{
+		print_ledding_char(width - len, ' ');
+		len = p_hex(p);
+		return (width);
+	}
+
+	len = p_hex(p);
 	va_end(args);
 	return (len + 2);
 }

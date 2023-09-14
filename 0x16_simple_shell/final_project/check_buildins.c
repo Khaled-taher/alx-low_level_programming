@@ -19,20 +19,20 @@ int check_builtin(char **argv, list_t *env)
 		perror("Error:");
 		return (-1);
 	}
-	/*if (_strcmp(argv[0], "exit") == 0)
+	if (_strcmp(argv[0], "exit") == 0)
 	{
 		if (argv[1] == NULL)
-			_builtin_exit(0);
+			_exit(0);
 		else if (argv[1] != NULL && argv[2] == NULL && is_num(argv[1]) == 1)
 		{
 			if (argv[1][0] == '0')
-				_builtin_exit(127);
+				_exit(127);
 			else
-				_builtin_exit(_atoi(argv[1]));
+				_exit(_atoi(argv[1]));
 		}
 		else
-			_builtin_exit(127);
-	}*/
+			_exit(127);
+	}
 	if (_strcmp(argv[0], "setenv") == 0)
 	{
 		if (argv[1] != NULL && argv[2] != NULL && argv[3] == NULL)

@@ -14,7 +14,7 @@ char **get_argv(char *lineptr)
 		return (NULL);
 
 	if (char_num == 0)
-		return(NULL);
+		return (NULL);
 	i = 0;
 	argv = malloc(sizeof(char *) * (arg_num + 1));
 	if (argv == NULL)

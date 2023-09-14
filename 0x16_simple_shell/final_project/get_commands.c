@@ -3,7 +3,6 @@
 /**
  * get_command - get the commands and their arguments from line
  * @lineptr: poiner to line
- * @command_num: number of command in the line
  * Return: return pointer to commands or NULL in error
  */
 char **get_command(char *lineptr)
@@ -98,26 +97,11 @@ int get_command_helper2(char *lineptr, int *error, int i)
 {
 	if (lineptr[i + 1] == '#')
 		return (-1);
-	/*if ((lineptr[i + 1] == '&' && lineptr[i + 2] != '&') ||
-			(lineptr[i + 1] == '&' && lineptr[i + 3] == '&'))
-	{
-		printf("bash: syntax error near unexpected token `&`");
-		(*error) = 1;
-		return (-1);
-	}
-	if ((lineptr[i + 1] == '|' && lineptr[i + 2] != '|') ||
-			(lineptr[i + 1] == '|' && lineptr[i + 3] == '|'))
-	{
-		printf("bash: syntax error near unexpected token `|`");
-		(*error) = 1;
-		return (-1);
-	}*/
 	return (0);
 }
 /**
  * helper_error - to change variable when error occurs
  * @command: poiner to commands
- * @command_num: number of commands in the line
  * Return: nothing
  */
 void helper_error(char **command)

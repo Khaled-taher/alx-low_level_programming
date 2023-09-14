@@ -5,7 +5,8 @@
  * @args: pointer to string to be printed
  * Return: return 1
  */
-int print_rev(va_list args)
+int print_rev(va_list args, __attribute__((unused)) int flg, __attribute__((unused)) int width,
+		__attribute__((unused)) int precision, __attribute__((unused)) int length)
 {
 	int i, len = 0;
 	char *str;
@@ -27,7 +28,8 @@ int print_rev(va_list args)
  * @args: pointer to string to be printed
  * Return: number of printed charcter
  */
-int print_rot13(va_list args)
+int print_rot13(va_list args, __attribute__((unused)) int flg, __attribute__((unused)) int width,
+		__attribute__((unused)) int precision, __attribute__((unused)) int length)
 {
 	int i, len =  0;
 	char *str;

@@ -2,7 +2,6 @@
 
 /**
  * build_path - build linked list of paths
- * @head: pointer pointed to first node
  * @path: pointer pointed to path varaible
  * Return: pointer to first node of path
  */
@@ -42,13 +41,14 @@ list_t *build_path(char *path)
  * check_path - check if comamnd in path
  * @env: pointer pointed to enviroment
  * @argv: pointer pointed to argument
+ * @status: status of operation
  * Return: pointer 0 if success and -1 in fail and 98 if not found
  */
 char **check_path(list_t *env, char **argv, int *status)
 {
 	int len = 0, i;
 	char *command, **new_argv;
-        list_t *path;
+	list_t *path;
 	struct stat st;
 
 	if (stat(argv[0], &st) == 0)
@@ -88,8 +88,9 @@ char **check_path(list_t *env, char **argv, int *status)
 
 /**
  * check_path_helper - check if comamnd in path
- * @env: pointer pointed to enviroment
+ * @path: pointer pointed to enviroment
  * @argv: pointer pointed to argument
+ * @status: status of operation
  * Return: pointer 0 if success and -1 in fail and 98 if not found
  */
 char *check_path_helper(list_t *path, char *argv, int *status)
@@ -118,7 +119,7 @@ char *check_path_helper(list_t *path, char *argv, int *status)
 
 /**
  * _getenv - get value associated with variable named
- * @environ: pointer to environment variables
+ * @head: pointer to environment variables
  * @name: name of varaible
  * Return: return pointer pointed to value of name
  */
@@ -135,7 +136,7 @@ char *_getenv(list_t *head, char *name)
 		value = strndup(current->str, len);
 		if (strcmp(name, value) == 0 && current->str[len] == '=')
 			break;
-	       current = current->next;	
+		current = current->next;
 	}
 	free(value);
 	i = len + 1;

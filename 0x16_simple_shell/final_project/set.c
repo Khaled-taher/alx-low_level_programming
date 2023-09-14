@@ -2,7 +2,7 @@
 
 /**
  * _setenv - to set value of new variable or modify it
- * @environ: pointer to environment variables
+ * @head: pointer to environment variables
  * @name: name of variable to set
  * @value: value to be set
  * @overwrite: if not 0 then overwrite old value
@@ -47,11 +47,9 @@ int _setenv(list_t *head, const char *name,
 
 /**
  * _setenv_helper1 - to set value of new variable or modify it
- * @environ: pointer to environment variables
+ * @head: pointer to environment variables
  * @name: name of variable to set
  * @value: value to be set
- * @new_environ: pointer to new environment after edit
- * @j: index of current node
  * Return: return 0 if sucessed and -1 in fail
  */
 int _setenv_helper1(list_t *head, const char *name, const char *value)
@@ -89,19 +87,17 @@ int _setenv_helper1(list_t *head, const char *name, const char *value)
 
 /**
  * _setenv_helper2 - to set value of new variable or modify it
- * @environ: pointer to environment variables
+ * @current: pointer to environment variables
  * @name: name of variable to set
  * @value: value to be set
- * @new_environ: pointer to new environment after edit
- * @j: index of current node
  * Return: return 0 if sucessed and -1 in fail
  */
 int _setenv_helper2(list_t *current, const char *name, const char *value)
 {
-        int i, name_len, val_len;
+	int i, name_len, val_len;
 
-        name_len = strlen(name);
-        val_len = strlen(value);
+	name_len = strlen(name);
+	val_len = strlen(value);
 	free(current->str);
 	current->str = NULL;
 	current->str = malloc(sizeof(char) * (name_len + val_len + 2));
@@ -110,17 +106,17 @@ int _setenv_helper2(list_t *current, const char *name, const char *value)
 		perror("Error:");
 		return (-1);
 	}
-        for (i = 0; i < name_len; i++)
-                current->str[i] = name[i];
-        current->str[i] = '=';
-        for (i = name_len + 1; i < (name_len + val_len + 1); i++)
-                current->str[i] = value[i - name_len - 1];
-        current->str[i] = '\0';
-        return (0);
+	for (i = 0; i < name_len; i++)
+		current->str[i] = name[i];
+	current->str[i] = '=';
+	for (i = name_len + 1; i < (name_len + val_len + 1); i++)
+		current->str[i] = value[i - name_len - 1];
+	current->str[i] = '\0';
+	return (0);
 }
 
 /**
- * name_check - to check if name contain '='
+ * check_name - to check if name contain '='
  * @name: name of variable to set
  * Return: return 0 if sucessed and -1 in fail
  */
@@ -131,7 +127,7 @@ int check_name(const char *name)
 	while (name[i] != '\0')
 	{
 		if (name[i] == '=')
-			return(-1);
+			return (-1);
 		i++;
 	}
 	return (0);

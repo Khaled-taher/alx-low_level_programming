@@ -5,38 +5,43 @@
  * @args: number to be printed
  * Return: return 1
  */
-int print_int(va_list args)
+int print_int(va_list args, int flg, int width, int precision, __attribute__((unused)) int length)
 {
 	int n = va_arg(args, int);
-	int i, temp, exp = 1, dig = 0, sig = 0;
+	int temp, dig = 0, sig = 0, l = 0, minus = 0, w = 0;
+	unsigned long int exp;
+	unsigned long int *ptr = &exp;
 
 	if (n < 0)
 	{
-		_putchar('-');
-		sig = 1;
-		n = n * -1;
+		temp = n * -1;
+		minus = 1;
 	}
 
-	temp = n;
+	dig = arr_len(temp, ptr, 10);
 
-	while (temp != 0)
+	if (precision > dig)
+		l = precision - dig;
+
+	if (width > (dig + l))
 	{
-		temp = temp / 10;
-		exp = 10 * exp;
-		dig++;
+		if (flg == (11 || 1))
+			w = print_ledding_char (width - (dig + l) - 1, ' ');
+		else if ((flg == (12 || 2)) && (precision == -1))
+			w = print_ledding_char (width - (dig + l) - 1, '0');
 	}
+	sig = print_sign(flg, minus);
 
-	temp = n;
+	if (l > 0)
+		l = print_ledding_char (l, '0');
 
-	for (i = 0; i < dig; i++)
-	{
-		exp = exp / 10;
-		_putchar((temp / exp) + '0');
-		temp = temp % exp;
-	}
+	dig = print_number(temp, exp, 10, 0);
+
+	if (((width > (dig + l))) && (flg == (13 || 3 || 40)))
+		w = print_ledding_char (width - (dig + l) - 1, ' ');
 
 	va_end(args);
-	return (dig + sig);
+	return (dig + sig + l + w);
 }
 
 /**
@@ -44,7 +49,8 @@ int print_int(va_list args)
  * @args: number to be printed in binary form
  * Return: number of printed bits
  */
-int print_bin(va_list args)
+int print_bin(va_list args, __attribute__((unused)) int flg, __attribute__((unused)) int width,
+		__attribute__((unused)) int precision, __attribute__((unused)) int length)
 {
 	unsigned long int n = va_arg(args, unsigned int);
 	unsigned long int temp = n, i, exp = 1, bt = 0;
@@ -74,27 +80,35 @@ int print_bin(va_list args)
  * @args: number to be printed in unsigned form
  * Return: number of printed digit
  */
-int print_unsig(va_list args)
+int print_unsig(va_list args, int flg, int width, int precision, __attribute__((unused)) int length)
 {
 	unsigned long int n = va_arg(args, unsigned int);
-	unsigned long temp = n, exp = 1, dig = 0, i;
+	unsigned long int temp = n, exp = 1;
+	unsigned long int *ptr = &exp;
+	int dig = 0, w = 0, l = 0, sig;
 
-	while (temp != 0)
+	dig = arr_len(temp, ptr, 10);
+	
+	if (precision > dig)
+		l = precision - dig;
+	
+	if (width > (dig + l))
 	{
-		temp = temp / 10;
-		exp = exp * 10;
-		dig++;
+		if (flg == (11 || 1))
+			w = print_ledding_char (width - (dig + l) - 1, ' ');
+		else if ((flg == (12 || 2)) && (precision == -1))
+			w = print_ledding_char (width - (dig + l) - 1, '0');
 	}
+	sig = print_sign(flg, 0);
 
-	temp = n;
-
-	for (i = 0; i < dig; i++)
-	{
-		exp = exp / 10;
-		_putchar((temp / exp) + '0');
-		temp = temp % exp;
-	}
-
+	if (l > 0)
+		l = print_ledding_char (l, '0');
+	
+	dig = print_number(temp, exp, 10, 0);
+	
+	if (((width > (dig + l))) && (flg == (13 || 3 || 40)))
+		w = print_ledding_char (width - (dig + l) - 1, ' ');
+	
 	va_end(args);
-	return (dig);
+	return (dig + sig + l + w);
 }
