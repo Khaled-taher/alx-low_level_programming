@@ -1,7 +1,7 @@
 #include "lists.h"
 
 /**
- * get_doneint_at_index - concatinate to strings
+ * get_dnodeint_at_index- concatinate to strings
  * @head: pointer to head of list
  * @index: index to get its pointer
  *
@@ -10,6 +10,7 @@
 dlistint_t *get_dnodeint_at_index(dlistint_t *head, unsigned int index)
 {
 	size_t num_node = 0;
+
 	if (head == NULL)
 	{
 		return (NULL);
